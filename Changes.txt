@@ -1,4 +1,33 @@
 UNRELEASED CHANGES
+
+  * The tcp-timeout backend option of the B2 Backend works now.
+
+  * mount.s3ql no longer crashes with "No Upload Threads available" when not running in
+    foreground.
+
+
+2021-01-03, S3QL 3.7.0
+
+  * S3QL now requires Python 3.7 or newer.
+
+  * S3QL now requires pyfuse3 of any version between 3.2.0 (inclusive) and 4.0 (exclusive).
+
+  * S3QL now supports newer AWS S3 regions like eu-south-1.
+
+  * mount.s3ql now again includes debugging information in its log output when
+    encountering an unexpected exception. This was broken in version 3.4.0, resulting in
+    mount.s3ql seemingly terminating at random in such a situation.
+
+  * mount.s3ql now properly handles SIGTERM (instead of crashing). This means it exits as
+    quickly as possible without data corruption. For a proper unmount, always use
+    `umount.s3ql`, `umount`, or `fusermount -u` and wait for the mount.s3ql process to
+    terminate.
+
+  * More robust expired auth token detection for Google Storage.
+
+
+2020-11-09, S3QL 3.6.0
+
   * Added ability to specify domain-name, project-domain-name and tenant-name as options
     for the OpenStack Swift (Keystone v3) backend for providers that prefer name to id.
 
@@ -7,7 +36,7 @@ UNRELEASED CHANGES
   * `mount.s3ql` now exits gracefully on CTRL-C (INT signal)
 
   * `mount.s3ql` now supports the `--dirty-block-upload-delay` option to influence the
-    time before dirty blocks are written from the cache to the storage backend. 
+    time before dirty blocks are written from the cache to the storage backend.
 
 2020-09-04, S3QL 3.5.1
 
